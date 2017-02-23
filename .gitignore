@@ -1,1 +1,7 @@
 *.blend1
+__pycache__
+targ_*
+LOG_*
+*.alog
+*.blog
+.LastOpenedMOOSLogDirectory
