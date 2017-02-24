@@ -5,3 +5,4 @@ LOG_*
 *.alog
 *.blog
 .LastOpenedMOOSLogDirectory
+eventlog
