@@ -33,3 +33,10 @@ class Heron(Robot):
 
         self.pose = Pose()
         self.append(self.pose)
+
+    def set_moos(self, moos_host='127.0.0.1', moos_port=9000,
+                    moos_name='iMorse_heron'):
+        self.motion.add_stream('moos',moos_host=moos_host, moos_port=moos_port,
+                                moos_name=moos_name)
+        self.pose.add_stream('moos',moos_host=moos_host, moos_port=moos_port,
+                                moos_name=moos_name)

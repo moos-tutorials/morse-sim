@@ -2,7 +2,7 @@ import logging; logger = logging.getLogger("morse." + __name__)
 import morse.core.robot
 
 class Heron(morse.core.robot.Robot):
-    """ 
+    """
     Class definition for the heron robot.
     """
 
@@ -20,7 +20,7 @@ class Heron(morse.core.robot.Robot):
         morse.core.robot.Robot.__init__(self, obj, parent)
 
         # Do here robot specific initializations
-        logger.info('Component initialized')
+        logger.info('Heron initialized')
 
     def default_action(self):
         """ Main loop of the robot
