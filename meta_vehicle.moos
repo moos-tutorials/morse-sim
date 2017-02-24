@@ -11,7 +11,7 @@ ProcessConfig = ANTLER
 {
   MSBetweenLaunches = 100
 
-  Run = MOOSDB            @ NewConsole = false
+  Run = MOOSDB            @ NewConsole = false, ExtraProcessParams=db
   Run = uSimMarine        @ NewConsole = false
   Run = pLogger           @ NewConsole = false
   Run = pNodeReporter     @ NewConsole = false
@@ -28,7 +28,10 @@ ProcessConfig = ANTLER
   Run = uFldNodeBroker     @ NewConsole = false
   Run = uFldMessageHandler @ NewConsole = false
 
-  Run = ./MOOS2MorseCoordinates.py @ NewConsole = false
+  Run = ./MOOS2MorseCoordinates.py @ NewConsole = false, ExtraProcessParams=config
+
+  config = --port=$(VPORT)
+  db = --event_log=eventlog
 }
 
 #include plug_uFldNodeBroker.moos

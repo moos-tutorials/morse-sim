@@ -3,6 +3,7 @@
 from pymoos import pymoos as moos
 import time
 from math import pi
+import argparse
 
 
 class MOOS2MorseCoordinates(moos.comms):
@@ -14,13 +15,14 @@ class MOOS2MorseCoordinates(moos.comms):
         moos_port:      an interger defining the port
     """
 
-    def __init__(self, moos_community, moos_port,
+    def __init__(self, moos_community='localhost', moos_port=9000,
+                    moos_name='MOOS2MorseCoordinates',
                     src_prefix = 'NAV', out_prefix = 'MORSE_SET'):
         """Initiates MOOSComms, sets the callbacks and runs the loop"""
         super(MOOS2MorseCoordinates, self).__init__()
         self.server = moos_community
         self.port = moos_port
-        self.name = 'MOOS2MorseCoordinates'
+        self.name = moos_name
         self.src_prefix = src_prefix
         self.out_prefix = out_prefix
 
@@ -67,7 +69,30 @@ class MOOS2MorseCoordinates(moos.comms):
 
 
 def main():
-    pinger = MOOS2MorseCoordinates('localhost', 9001)
+    parser = argparse.ArgumentParser(
+        description='MOOS2MorseCoordinates converts MOOS coordinates to Morse')
+    parser.add_argument(
+        'moos_file', type=str, help='The MOOS file (not used yet)')
+    parser.add_argument(
+        'moos_name', type=str, help='MOOS name of the app',
+        default='MOOS2MorseCoordinates')
+    parser.add_argument(
+        '-s', '--server', type=str, help='Community IP', default='localhost')
+    parser.add_argument(
+        '-p', '--port', type=int, help='Port number', default=9000)
+    parser.add_argument(
+        '--src-prefix', type=str, help='Source prefix', required=False,
+        default='NAV')
+    parser.add_argument(
+        '--out-prefix', type=str, help='Output prefix', required=False,
+        default='MORSE_SET')
+    # Array for all arguments passed to script
+    args = parser.parse_args()
+
+    pinger = MOOS2MorseCoordinates(moos_community=args.server,
+                                    moos_port=args.port,
+                                    src_prefix=args.src_prefix,
+                                    out_prefix=args.out_prefix)
 
     while True:
         time.sleep(1)
