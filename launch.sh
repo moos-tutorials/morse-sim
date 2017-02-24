@@ -10,8 +10,8 @@ for ARGI; do
         printf "  --just_make, -j    \n"
         printf "  --help, -h         \n"
         exit 0;
-    # elif [ "${ARGI//[^0-9]/}" = "$ARGI" -a "$TIME_WARP" = 1 ]; then
-    #     TIME_WARP=$ARGI
+    elif [ "${ARGI//[^0-9]/}" = "$ARGI" -a "$TIME_WARP" = 1 ]; then
+        TIME_WARP=$ARGI
     elif [ "${ARGI}" = "--just_build" -o "${ARGI}" = "-j" ] ; then
         JUST_MAKE="yes"
     else
@@ -67,7 +67,8 @@ printf "Launching $SNAME MOOS Community (WARP=%s) \n"  $TIME_WARP
 pAntler targ_shoreside.moos >& /dev/null &
 printf "Done \n"
 
-morse run pavlab_sim
+# The simulation will crash if no arguments here!!!
+morse run pavlab_sim default.py -t=$TIME_WARP
 
 printf "Killing all processes ... \n"
 kill -- -$$
