@@ -54,6 +54,12 @@ robot.rotate(0.0, 0.0, 3.5)
 
 
 # set 'fastmode' to True to switch to wireframe mode
-env = Environment('sandbox', fastmode = True)
+env = Environment('water-1/deep_water', fastmode = False)
+
+water = bpymorse.get_object('Water')
+water.scale = [500.0, 500.0, 0.0]
+
+env.set_horizon_color([0, .6, 1])
 env.set_camera_location([10.0, -10, 10])
 env.set_camera_rotation([1.09, 0, .78])
+env.set_camera_clip(clip_end=1000)
