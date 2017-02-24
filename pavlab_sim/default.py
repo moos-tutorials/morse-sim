@@ -14,6 +14,7 @@ from pavlab_sim.builder.robots import Mokai
 #
 # 'morse add robot <name> pavlab_sim' can help you to build custom robots.
 robot = Mokai()
+robot.set_moos(moos_port=9001)
 
 # The list of the main methods to manipulate your components
 # is here: http://www.openrobots.org/morse/doc/stable/user/builder_overview.html
@@ -49,7 +50,7 @@ robot.rotate(0.0, 0.0, 3.5)
 #
 # Check here: http://www.openrobots.org/morse/doc/stable/user/integration.html
 # the other available interfaces (like ROS, YARP...)
-robot.add_stream('moos')
+# robot.add_stream('moos')
 
 
 # set 'fastmode' to True to switch to wireframe mode

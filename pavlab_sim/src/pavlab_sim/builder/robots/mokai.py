@@ -1,13 +1,13 @@
 from morse.builder import *
 
-class Mokai(Robot):
+class Mokai(GroundRobot):
     """
     A template robot model for mokai, with a motion controller and a pose sensor.
     """
-    def __init__(self, name = None, debug = True):
+    def __init__(self, name = None, debug = False):
 
         # mokai.blend is located in the data/robots directory
-        Robot.__init__(self, 'pavlab_sim/robots/mokai.blend', name)
+        GroundRobot.__init__(self, 'pavlab_sim/robots/mokai.blend', name)
         self.properties(classpath = "pavlab_sim.robots.mokai.Mokai")
 
         ###################################
@@ -32,4 +32,18 @@ class Mokai(Robot):
         ###################################
 
         self.pose = Pose()
+        self.pose.alter('NED')
         self.append(self.pose)
+
+        self.teleport = Teleport()
+        self.teleport.alter('NED')
+        self.append(self.teleport)
+
+    def set_moos(self, moos_host='127.0.0.1', moos_port=9000,
+                    moos_name='iMorse_mokai'):
+        self.motion.add_stream('moos',moos_host=moos_host, moos_port=moos_port,
+                                moos_name=moos_name)
+        self.pose.add_stream('moos',moos_host=moos_host, moos_port=moos_port,
+                                moos_name=moos_name)
+        self.teleport.add_stream('moos',moos_host=moos_host, moos_port=moos_port,
+                                moos_name=moos_name)
