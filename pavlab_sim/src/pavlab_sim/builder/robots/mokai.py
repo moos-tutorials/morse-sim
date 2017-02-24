@@ -32,11 +32,9 @@ class Mokai(GroundRobot):
         ###################################
 
         self.pose = Pose()
-        self.pose.alter('NED')
         self.append(self.pose)
 
         self.teleport = Teleport()
-        self.teleport.alter('NED')
         self.append(self.teleport)
 
     def set_moos(self, moos_host='127.0.0.1', moos_port=9000,

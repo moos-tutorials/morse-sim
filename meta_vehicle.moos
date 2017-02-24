@@ -28,20 +28,7 @@ ProcessConfig = ANTLER
   Run = uFldNodeBroker     @ NewConsole = false
   Run = uFldMessageHandler @ NewConsole = false
 
-  Run = pEchoVar           @ NewConsole = false
-}
-
-ProcessConfig = pEchoVar
-{
-  AppTick   = 4
-  CommsTick = 4
-
-  // Your Configuration here
-  Echo = NAV_X    -> MORSE_SET_X
-  Echo = NAV_Y    -> MORSE_SET_Y
-  Echo = NAV_Z    -> MORSE_SET_Z
-  Echo = NAV_YAW  -> MORSE_SET_YAW
-
+  Run = ./MOOS2MorseCoordinates.py @ NewConsole = false
 }
 
 #include plug_uFldNodeBroker.moos
