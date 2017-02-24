@@ -6,13 +6,18 @@ Feel free to edit this template as you like!
 """
 
 from morse.builder import *
-from pavlab_sim.builder.robots import Mokai
+from pavlab_sim.builder.robots import Mokai, Heron
 import argparse
 
-robot = Mokai()
-robot.set_moos(moos_port=9001)
-robot.translate(1.0, 0.0, 0.0)
-robot.rotate(0.0, 0.0, 3.5)
+henry = Heron()
+henry.set_moos(moos_port=9001)
+henry.translate(1.0, 0.0, 0.0)
+henry.rotate(0.0, 0.0, 3.5)
+
+gilda = Mokai()
+gilda.set_moos(moos_port=9002)
+gilda.translate(-10.0, 10.0, 0.0)
+gilda.rotate(0.0, 0.0, 3.5)
 
 
 # set 'fastmode' to True to switch to wireframe mode
@@ -38,7 +43,8 @@ args = parser.parse_args(new_arglist)
 timewarp = args.timewarp
 def_freq = 20.
 freq = def_freq / timewarp
-robot.frequency(freq)
+henry.frequency(freq)
+gilda.frequency(freq)
 env.simulator_frequency(freq)
 env.set_time_scale(timewarp)
 env.use_vsync('OFF')

@@ -35,10 +35,10 @@ nsplug meta_vehicle.moos targ_henry.moos -f WARP=$TIME_WARP \
    VTYPE="kayak"      SHORE_LISTEN=$SHORE_LISTEN            \
    KNOWS_CONTACTS=1
 
-# nsplug meta_vehicle.moos targ_gilda.moos -f WARP=$TIME_WARP \
-#    VNAME=$VNAME2      START_POS=$START_POS2                 \
-#    VPORT="9002"       SHARE_LISTEN="9302"                   \
-#    VTYPE="kayak"      SHORE_LISTEN=$SHORE_LISTEN
+nsplug meta_vehicle.moos targ_gilda.moos -f WARP=$TIME_WARP \
+   VNAME=$VNAME2      START_POS=$START_POS2                 \
+   VPORT="9002"       SHARE_LISTEN="9302"                   \
+   VTYPE="kayak"      SHORE_LISTEN=$SHORE_LISTEN
 
 nsplug meta_shoreside.moos targ_shoreside.moos -f WARP=$TIME_WARP \
    SNAME="shoreside"  SHARE_LISTEN=$SHORE_LISTEN                  \
@@ -47,8 +47,8 @@ nsplug meta_shoreside.moos targ_shoreside.moos -f WARP=$TIME_WARP \
 nsplug meta_henry.bhv targ_henry.bhv -f VNAME=$VNAME1  \
     START_POS=$START_POS1
 
-# nsplug meta_gilda.bhv targ_gilda.bhv -f VNAME=$VNAME2  \
-#     START_POS=$START_POS2
+nsplug meta_gilda.bhv targ_gilda.bhv -f VNAME=$VNAME2  \
+    START_POS=$START_POS2
 
 if [ ${JUST_MAKE} = "yes" ] ; then
     exit 0
@@ -61,8 +61,8 @@ printf "Launching $VNAME1 MOOS Community (WARP=%s) \n" $TIME_WARP
 pAntler targ_henry.moos >& /dev/null &
 sleep 0.25
 # printf "Launching $VNAME2 MOOS Community (WARP=%s) \n" $TIME_WARP
-# pAntler targ_gilda.moos >& /dev/null &
-# sleep 0.25
+pAntler targ_gilda.moos >& /dev/null &
+sleep 0.25
 printf "Launching $SNAME MOOS Community (WARP=%s) \n"  $TIME_WARP
 pAntler targ_shoreside.moos >& /dev/null &
 printf "Done \n"
