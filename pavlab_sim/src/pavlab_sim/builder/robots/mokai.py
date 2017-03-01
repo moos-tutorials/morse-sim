@@ -45,3 +45,9 @@ class Mokai(GroundRobot):
                                 moos_name=moos_name)
         self.teleport.add_stream('moos',moos_host=moos_host, moos_port=moos_port,
                                 moos_name=moos_name)
+
+    def frequency(self, frequency=None):
+        GroundRobot.frequency(frequency)
+        self.motion.frequency(frequency)
+        self.pose.frequency(frequency)
+        self.teleport.frequency(frequency)
